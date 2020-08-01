@@ -1,18 +1,39 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <div id="lottie" class="w-full"></div>
+    <div class="container mx-auto">
+      <h1 class="text-center text-4xl font-semibold">
+        Ejercicio para Front End Developer
+      </h1>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import lottie from 'lottie-web'
 
 export default Vue.extend({
   name: 'Home',
-  components: {
-    HelloWorld,
+  mounted() {
+    lottie.loadAnimation({
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      container: document.querySelector('#lottie')!,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'lottie-animation.json',
+      name: 'main',
+    })
+  },
+  beforeDestroy() {
+    lottie.destroy('main')
   },
 })
 </script>
+
+<style lang="postcss" scoped>
+#lottie {
+  height: 50vh;
+}
+</style>
