@@ -10,7 +10,8 @@
         v-show="$index === currentIndex"
         :key="slide.title"
         class="carousel-cover__item"
-        :style="{ backgroundImage: `url(${slide.img})` }"
+        :style="{ backgroundImage: `url(/${slide.img})` }"
+        @click="showModal"
       >
         <div class="group hover:shadow-2xl absolute inset-0 p-20">
           <div
@@ -33,37 +34,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
+import { Slide } from '@/models/Slide'
+
 export default Vue.extend({
+  props: {
+    slides: {
+      required: true,
+      type: Array as PropType<Array<Slide>>,
+    },
+  },
   data: () => ({
     timer: 0,
     currentIndex: 0,
-    slides: [
-      {
-        title: 'I am Slide A',
-        description: '',
-        img:
-          'https://cdn.pixabay.com/photo/2015/12/12/15/24/amsterdam-1089646_1280.jpg',
-      },
-      {
-        title: 'I am Slide B',
-        description: '',
-        img:
-          'https://cdn.pixabay.com/photo/2016/02/17/23/03/usa-1206240_1280.jpg',
-      },
-      {
-        title: 'I am Slide C',
-        description: '',
-        img:
-          'https://cdn.pixabay.com/photo/2015/05/15/14/27/eiffel-tower-768501_1280.jpg',
-      },
-      {
-        title: 'I am Slide D',
-        description: '',
-        img:
-          'https://cdn.pixabay.com/photo/2016/12/04/19/30/berlin-cathedral-1882397_1280.jpg',
-      },
-    ],
   }),
   mounted() {
     this.startSlide()
@@ -82,6 +65,9 @@ export default Vue.extend({
     },
     clearInterval() {
       clearInterval(this.timer)
+    },
+    showModal() {
+      this.$emit('modal', this.slides[this.currentIndex])
     },
   },
 })
