@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex items-center justify-center">
-    <form action="/" method="post">
+    <form action="/upload" method="post" enctype="multipart/form-data">
       <h1>Cargar nuevas Imagenes</h1>
 
       <label for="title">
@@ -30,7 +30,10 @@ h1 {
   @apply font-bold text-3xl text-gray-800 text-center;
 }
 form {
-  @apply bg-white p-10 rounded-lg flex flex-col gap-8 w-1/2 items-center justify-center;
+  @apply bg-white p-10 rounded-lg flex flex-col gap-8 w-full items-center justify-center;
+  @screen lg {
+    @apply w-1/2;
+  }
   & input[type='text'] {
     @apply bg-gray-200 py-2 px-4 rounded-lg;
   }
@@ -46,7 +49,7 @@ form {
   }
 
   & input[type='file'] {
-    @apply p-2 px-5 rounded-lg bg-gray-200;
+    @apply p-2 px-5 rounded-lg bg-gray-200 w-1/2 my-4;
   }
 }
 </style>
