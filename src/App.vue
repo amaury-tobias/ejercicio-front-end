@@ -1,29 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <navbar />
+    <main class="pt-32 h-screen flex justify-center">
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from '@/components/Navbar.vue'
 
 export default Vue.extend({
   name: 'App',
   components: {
-    HelloWorld,
+    Navbar,
   },
 })
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="postcss" scoped>
+header {
+  @apply p-3 shadow-2xl rounded-b-lg fixed z-50 bg-white w-full top-0;
 }
 </style>
